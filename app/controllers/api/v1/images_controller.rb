@@ -3,7 +3,9 @@ module Api
     class ImagesController < ApplicationController
       
       def index
-        render json: Image.all
+        images = Image.all
+
+        render json: ImagesRepresenter.new(images).as_json
       end
 
       def create

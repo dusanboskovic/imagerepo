@@ -14,7 +14,16 @@ describe 'Images API', type: :request do
             expect(response).to have_http_status(:success)
             expect(JSON.parse(response.body).size).to eq(2)
         end
+
+        it 'returns a subset of images based on pagination' do
+            get '/api/v1/images', params: { limit: 1 }
+
+            expect(response).to have_http_status(:success)
+            # expect(response_body.size).to eq(1)
+        end
     end
+
+
 
     describe 'POST /images' do
         it 'create new images' do
